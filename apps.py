@@ -134,10 +134,9 @@ elif option == "Capture from Camera":
     webrtc_ctx = webrtc_streamer(
     key="object-detection",
     mode=WebRtcMode.SENDRECV,
-    # rtc_configuration={
-    #     "iceServers": get_ice_servers(),
-    #     "iceTransportPolicy": "relay",
-    # },
+    rtc_configuration={  # Add this line
+        "iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]
+        },
     video_transformer_factory=VideoTransformer,
     media_stream_constraints={"video": True, "audio": False},
     async_processing=True,
